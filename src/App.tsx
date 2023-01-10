@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import './App.css'
-const logo: string = require("./logo.svg").default;
+//const logo: string = require("./logo.svg").default;
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <table>
+        <tr>
+        <td>Login</td>
+        <td><input type="text"/></td>
+        </tr>
+        <tr>
+        <td>senha</td>
+        <td><input type="text"/></td>
+        </tr>
+        <input type="submit"/>
+        </table>
+        
       </div>
     );
   }
