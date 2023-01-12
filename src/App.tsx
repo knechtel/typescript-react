@@ -1,38 +1,50 @@
-import React, { Component } from 'react';
-import './App.css'
-import { CLIENT_ALL } from './util/url'; 
-//const logo: string = require("./logo.svg").default;
+import React, { useState } from 'react';
 import axios from 'axios';
-class App extends Component {
+import { CLIENT_ALL } from './util/url';
 
-  async componentDidMount() : Promise<void> {
-     await axios.get(CLIENT_ALL, {
-        auth: {
-          username: "maiquel",
-          password: "123",
-        }}).then(res => {
-        const data = res.data;
-        console.log(data)
-      })
+
+const App = () => {
+
+  const [login, setLogin] = useState();
+  const [password, setPassword] = useState();
+
+  function sendLoginAndPassword(): void {
+    axios.get(CLIENT_ALL, {
+      auth: {
+        username: "maiquel",
+        password: "123",
+      }
+    }).then(res => {
+      const data = res.data;
+      console.log(data)
+    })
+    console.log(login + " -  " + password);
+  };
+
+  const handleLogin = (event: { target: { value: any; }; }) => {
+    setLogin(event.target.value);
   }
-  render() {
-    return (
-      <div className="App">
-        <table>
+  const handlerPassword = (event: { target: { value: any; }; }) => {
+    setPassword(event.target.value);
+  }
+
+  return (
+    <div>
+      <table>
         <tr>
           <td>Login</td>
-          <td><input type="text"/></td>
+          <td><input type="text" value={login} onChange={(e) => { handleLogin(e) }} /></td>
         </tr>
         <tr>
           <td>senha</td>
-          <td><input type="text"/></td>
+          <td><input type="text" value={password} onChange={(e) => { handlerPassword(e) }} /></td>
         </tr>
-        <input type="submit"/>
-        </table>
-        
-      </div>
-    );
-  }
-}
+        <input type="submit" onClick={() => { sendLoginAndPassword() }} />
+      </table>
+    </div>
+  )
+};
 
 export default App;
+
+
