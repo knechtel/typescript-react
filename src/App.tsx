@@ -8,7 +8,7 @@ const App = () => {
   const [login, setLogin] = useState();
   const [password, setPassword] = useState();
 
-  function sendLoginAndPassword(): void {
+  const sendLoginAndPassword = (): void => {
     axios.get(CLIENT_ALL, {
       auth: {
         username: "maiquel",
