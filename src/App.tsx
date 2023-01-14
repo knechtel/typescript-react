@@ -18,11 +18,14 @@ const App = () => {
     }
     ).then((response) => {
       if (response.status === 200) {
-        navegate("/test")
-      }      
+        navegate("/main")
+      } else {
+        navegate("/error")
+      }   
 
     }, (error) => {
       console.log(error);
+      navegate("/error")
     });
     console.log(login + " -  " + password);
 
