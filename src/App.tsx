@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { CLIENT_ALL } from './util/url';
+import { CLIENT_ALL, TOKEN } from './util/url';
 
 
 const App = () => {
@@ -9,15 +9,16 @@ const App = () => {
   const [password, setPassword] = useState();
 
   const sendLoginAndPassword = (): void => {
-    axios.get(CLIENT_ALL, {
-      auth: {
-        username: "maiquel",
-        password: "123",
-      }
-    }).then(res => {
-      const data = res.data;
-      console.log(data)
-    })
+    axios.post(TOKEN, {
+      username: login,
+      password: password
+
+    }
+    ).then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
     console.log(login + " -  " + password);
   };
 
