@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { CLIENT_ALL, TOKEN } from './util/url';
 
 
 const App = () => {
-
+  const navegate = useNavigate();
   const [login, setLogin] = useState();
   const [password, setPassword] = useState();
 
@@ -15,11 +17,16 @@ const App = () => {
 
     }
     ).then((response) => {
-      console.log(response);
+      if (response.status === 200) {
+        navegate("/test")
+      }      
+
     }, (error) => {
       console.log(error);
     });
     console.log(login + " -  " + password);
+
+
   };
 
   const handleLogin = (event: { target: { value: any; }; }) => {
@@ -38,7 +45,7 @@ const App = () => {
         </tr>
         <tr>
           <td>senha</td>
-          <td><input type="text" value={password} onChange={(e) => { handlerPassword(e) }} /></td>
+          <td><input type="password" value={password} onChange={(e) => { handlerPassword(e) }} /></td>
         </tr>
         <input type="submit" onClick={() => { sendLoginAndPassword() }} />
       </table>
